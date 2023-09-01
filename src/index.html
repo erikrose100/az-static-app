@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <title>Vanilla JavaScript App</title>
+  <title>Vanilla's Timekeepin' App</title>
 </head>
 
 <body>
   <main>
-    <h1>Vanilla JavaScript App</h1>
+    <h1>Vanilla's Timekeepin' App</h1>
     <p>Loading content from the API: <b id="name">...</b></p>
     <form name="input">
       <input type="string" id="stringin" name="stringin">
@@ -20,7 +20,7 @@
 
   <script>
     window.setText = (async function () {
-      const text = await (await fetch(`/api/DateConverter?name=Human`)).json();
+      const text = await (await fetch(`/api/DateConverter`)).json();
       document.querySelector("#name").textContent = text;
     }());
     window.setNewText = (async function (event) {
@@ -32,10 +32,6 @@
     });
   </script>
   <script>
-    // const button = document.querySelector("#send");
-    // const stringin = document.querySelector("#stringin");
-    // // stringin.addEventListener('change', setNewText);
-    // button.addEventListener('click', async (event) => setNewText);
     const myForm = document.querySelector("form[name=input]");
     myForm.querySelector("button").addEventListener('click', function () {
       myForm.requestSubmit();

@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -19,6 +20,7 @@ namespace StaticWeb.Function
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
+            DateTime currentDate = DateTime.Now;
             string name = req.Query["name"];
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
@@ -26,8 +28,8 @@ namespace StaticWeb.Function
             name = name ?? data?.name;
 
             string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+                ? $"Greetings, Human! This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response. It is {currentDate}"
+                : $"Hello, {name}! This HTTP triggered function executed successfully. It is {currentDate}.";
 
             return new JsonResult(responseMessage);
         }
