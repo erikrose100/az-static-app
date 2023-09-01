@@ -11,7 +11,39 @@
 <body>
   <main>
     <h1>Vanilla JavaScript App</h1>
+    <p>Loading content from the API: <b id="name">...</b></p>
+    <form name="input">
+      <input type="string" id="stringin" name="stringin">
+      <button type="button" class="send" id="send">Send</button>
+    </form>
   </main>
+
+  <script>
+    window.setText = (async function () {
+      const text = await (await fetch(`/api/DateConverter?name=Erik`)).json();
+      document.querySelector("#name").textContent = text;
+    }());
+    window.setNewText = (async function (event) {
+      event.preventDefault()
+      const newText = stringin.value;
+      const uri = '/api/DateConverter?name=' + newText;
+      const text = await (await fetch(uri)).json();
+      document.querySelector("#name").textContent = text;
+    });
+  </script>
+  <script>
+    // const button = document.querySelector("#send");
+    // const stringin = document.querySelector("#stringin");
+    // // stringin.addEventListener('change', setNewText);
+    // button.addEventListener('click', async (event) => setNewText);
+    const myForm = document.querySelector("form[name=input]");
+    myForm.querySelector("button").addEventListener('click', function () {
+      myForm.requestSubmit();
+    })
+
+    myForm.addEventListener('submit', setNewText)
+
+  </script>
 </body>
 
 </html>
