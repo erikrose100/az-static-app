@@ -20,7 +20,7 @@
 
   <script>
     window.setText = (async function () {
-      const text = await (await fetch(`/api/DateConverter?name=Erik`)).json();
+      const text = await (await fetch(`/api/DateConverter?name=Human`)).json();
       document.querySelector("#name").textContent = text;
     }());
     window.setNewText = (async function (event) {
